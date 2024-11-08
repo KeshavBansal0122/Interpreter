@@ -33,7 +33,6 @@ fn main() {
                     Ok(tok) => {print_braces(&tok);},
                     Err(err) => print_errors(&err),
                 }
-                panic!("Scanner not implemented");
             } else {
                 println!("EOF  null"); // Placeholder, remove this line when implementing the scanner
             }
@@ -48,8 +47,8 @@ fn main() {
 fn print_braces(tokens: &Vec<Token>) {
     for token in tokens {
         match token.token_type {
-            TokenType::LeftBrace => println!("LEFT_PAREN ( null"),
-            TokenType::RightBrace => println!("RIGHT_PAREN ) null"),
+            TokenType::LeftParen => println!("LEFT_PAREN ( null"),
+            TokenType::RightParen => println!("RIGHT_PAREN ) null"),
             TokenType::Eof => println!("EOF  null"),
             _ => {}
         }
@@ -58,8 +57,8 @@ fn print_braces(tokens: &Vec<Token>) {
 fn print_errors(errors: &Vec<ParsingError>) {
     for error in errors {
         let line = match error {
-            ParsingError::UnexpectedEOF(line) => {"Unexpected EOF at {line}"},
-            ParsingError::UnexpectedChar(char, line) => {"Unexpected character {char} at {line}"},
+            ParsingError::UnexpectedEOF(line) => { format!("Unexpected EOF at {line}")},
+            ParsingError::UnexpectedChar(char, line) => { format!("Unexpected character {char} at {line}")},
         };
         writeln!(io::stderr(), "{}", line).unwrap();
     }
