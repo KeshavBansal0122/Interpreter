@@ -30,7 +30,7 @@ fn main() {
             // Uncomment this block to pass the first stage
             if !file_contents.is_empty() {
                 match scan_tokens(file_contents) {
-                    Ok(tok) => {}
+                    Ok(tok) => {print_braces(&tok);},
                     Err(err) => print_errors(&err),
                 }
                 panic!("Scanner not implemented");
