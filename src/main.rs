@@ -49,6 +49,8 @@ fn print_braces(tokens: &Vec<Token>) {
         match token.token_type {
             TokenType::LeftParen => println!("LEFT_PAREN ( null"),
             TokenType::RightParen => println!("RIGHT_PAREN ) null"),
+            TokenType::LeftBrace => println!("LEFT_BRACE {{ null"),
+            TokenType::RightBrace => println!("RIGHT_BRACE }} null"),
             TokenType::Eof => println!("EOF  null"),
             _ => {}
         }
