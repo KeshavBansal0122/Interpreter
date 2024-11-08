@@ -31,7 +31,7 @@ fn main() {
             if !file_contents.is_empty() {
                 match scan_tokens(file_contents) {
                     Ok(tok) => {}
-                    Err(err) => print_errors(err),
+                    Err(err) => print_errors(&err),
                 }
                 panic!("Scanner not implemented");
             } else {
