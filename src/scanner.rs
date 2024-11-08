@@ -48,11 +48,11 @@ impl Scanner {
     }
 
     fn token(&mut self, token: TokenType) {
-        self.add_token_with_literal(token, None)
+        self.token_with_literal(token, None)
     }
 
     fn token_with_literal(&mut self, token: TokenType, literal: Option<Literal>) {
-        let to_lex = String::from(self.source[self.start..self.current]);
+        let to_lex: String = self.source[self.start..self.current].iter().collect();
         let t = Token {
             token_type: token,
             literal,
@@ -75,7 +75,7 @@ impl Scanner {
 
         self.next(); // consume the ending quote
 
-        let value = String::from(self.source[self.start + 1..self.current - 1]);
+        let value: String = self.source[self.start + 1..self.current - 1].iter().collect();
         Ok(self.token_with_literal(TokenType::String, Some(Literal::Str(value))))
     }
     fn next_token(&mut self) -> Result<(), ParsingError> {
